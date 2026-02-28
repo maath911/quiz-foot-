@@ -7,13 +7,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --green: #1a6b2a;
-    --green-light: #2d9e44;
-    --green-glow: #39d65a;
+    --green: #0047a8;
+    --green-light: #0055cc;
+    --green-glow: #4d9fff;
     --yellow: #f5c518;
     --red: #e63946;
     --white: #f0f0f0;
-    --dark: #0d1b0f;
+    --dark: #06091a;
     --card: rgba(255,255,255,0.06);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -21,8 +21,9 @@
     background: var(--dark); color: var(--white);
     font-family: 'Nunito', sans-serif; min-height: 100vh; overflow-x: hidden;
     background-image:
-      radial-gradient(ellipse at 20% 50%, rgba(26,107,42,0.25) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 20%, rgba(45,158,68,0.15) 0%, transparent 50%);
+      radial-gradient(ellipse at 20% 60%, rgba(200,16,46,0.28) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(0,71,168,0.35) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 100%, rgba(200,16,46,0.15) 0%, transparent 50%);
   }
   .field-lines {
     position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.04;
@@ -35,7 +36,7 @@
   h1 {
     font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 10vw, 6rem);
     letter-spacing: 4px; color: var(--green-glow);
-    text-shadow: 0 0 40px rgba(57,214,90,0.5), 0 4px 0 rgba(0,0,0,0.5); line-height: 1;
+    text-shadow: 0 0 40px rgba(77,159,255,0.5), 0 4px 0 rgba(0,0,0,0.5); line-height: 1;
   }
   .subtitle { font-size: 1.1rem; opacity: 0.6; margin-top: 8px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
   .card {
@@ -48,14 +49,14 @@
     border-radius: 10px; padding: 12px 16px; color: #fff; font-family: 'Nunito', sans-serif;
     font-size: 1rem; font-weight: 700; outline: none; transition: border-color 0.2s, background 0.2s;
   }
-  input[type="text"]:focus { border-color: var(--green-glow); background: rgba(57,214,90,0.08); }
+  input[type="text"]:focus { border-color: var(--green-glow); background: rgba(0,71,168,0.1); }
   .btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 8px;
     background: var(--green-light); border: none; border-radius: 12px;
     color: #fff; font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 900;
     padding: 14px 28px; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 1px;
   }
-  .btn:hover { background: var(--green-glow); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(57,214,90,0.35); }
+  .btn:hover { background: var(--green-glow); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(77,159,255,0.35); }
   .btn:active { transform: translateY(0); }
   .btn.btn-big { font-size: 1.2rem; padding: 18px 40px; width: 100%; max-width: 320px; }
   .btn.btn-ghost { background: transparent; border: 2px solid rgba(255,255,255,0.2); }
@@ -72,22 +73,23 @@
     color: #fff; font-family: 'Nunito', sans-serif; font-size: 1.1rem; font-weight: 900;
     padding: 12px; cursor: pointer; transition: all 0.2s;
   }
-  .cnt-btn.selected { border-color: var(--green-glow); background: rgba(57,214,90,0.15); color: var(--green-glow); }
+  .cnt-btn.selected { border-color: var(--green-glow); background: rgba(0,71,168,0.2); color: var(--green-glow); }
   .player-inputs { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
   .player-input-row { display: flex; align-items: center; gap: 10px; }
   .player-badge { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 900; flex-shrink: 0; }
   /* ROUNDS */
   #rounds-screen { gap: 20px; }
   #rounds-screen h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 3px; color: var(--green-glow); }
-  .rounds-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; width: 100%; max-width: 420px; }
+  .rounds-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; width: 100%; max-width: 260px; }
   .round-btn {
     background: rgba(255,255,255,0.06); border: 2px solid rgba(255,255,255,0.12);
     border-radius: 14px; color: #fff; font-family: 'Nunito', sans-serif;
-    font-size: 1.1rem; font-weight: 900; padding: 18px 10px; cursor: pointer; transition: all 0.2s;
-    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    font-size: 1.4rem; font-weight: 900; padding: 0; cursor: pointer; transition: all 0.2s;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+    aspect-ratio: 1 / 1; width: 100%;
   }
-  .round-btn:hover { border-color: var(--green-glow); background: rgba(57,214,90,0.1); }
-  .round-btn.selected { border-color: var(--green-glow); background: rgba(57,214,90,0.2); color: var(--green-glow); }
+  .round-btn:hover { border-color: var(--green-glow); background: rgba(0,71,168,0.15); }
+  .round-btn.selected { border-color: var(--green-glow); background: rgba(0,71,168,0.3); color: var(--green-glow); }
   .round-btn span { font-size: 0.7rem; opacity: 0.6; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
   /* DIFFICULTY */
   #difficulty { gap: 20px; }
@@ -103,7 +105,7 @@
     transition: all 0.2s; display: flex; align-items: center; justify-content: space-between;
   }
   .diff-card:hover { transform: translateX(6px); }
-  .diff-card.easy:hover, .diff-card.easy.selected { border-color: #39d65a; background: rgba(57,214,90,0.12); }
+  .diff-card.easy:hover, .diff-card.easy.selected { border-color: #4d9fff; background: rgba(77,159,255,0.12); }
   .diff-card.medium:hover, .diff-card.medium.selected { border-color: var(--yellow); background: rgba(245,197,24,0.12); }
   .diff-card.hard:hover, .diff-card.hard.selected { border-color: var(--red); background: rgba(230,57,70,0.12); }
   .diff-name { font-size: 1.2rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
@@ -117,18 +119,18 @@
     background: var(--card); border: 1px solid rgba(255,255,255,0.1);
     border-radius: 50px; padding: 6px 14px; font-size: 0.85rem; font-weight: 700; transition: all 0.3s;
   }
-  .score-chip.active-player { border-color: var(--green-glow); background: rgba(57,214,90,0.15); box-shadow: 0 0 16px rgba(57,214,90,0.2); }
+  .score-chip.active-player { border-color: var(--green-glow); background: rgba(77,159,255,0.15); box-shadow: 0 0 16px rgba(77,159,255,0.25); }
   .q-counter { font-size: 0.8rem; opacity: 0.5; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
   .turn-banner {
     width: 100%; max-width: 640px; display: flex; align-items: center; gap: 10px;
     padding: 12px 20px; border-radius: 12px; font-weight: 900; font-size: 1rem;
-    background: rgba(57,214,90,0.1); border: 1px solid rgba(57,214,90,0.3); flex-wrap: wrap;
+    background: rgba(0,71,168,0.15); border: 1px solid rgba(77,159,255,0.35); flex-wrap: wrap;
   }
   .diff-badge {
     display: inline-flex; align-items: center; gap: 4px;
     padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
   }
-  .diff-badge.easy { background: rgba(57,214,90,0.2); color: #39d65a; }
+  .diff-badge.easy { background: rgba(77,159,255,0.2); color: #4d9fff; }
   .diff-badge.medium { background: rgba(245,197,24,0.2); color: var(--yellow); }
   .diff-badge.hard { background: rgba(230,57,70,0.2); color: var(--red); }
   .question-card {
@@ -137,17 +139,16 @@
     border-radius: 18px; padding: 28px;
   }
   .question-text { font-size: 1.2rem; font-weight: 700; line-height: 1.5; margin-bottom: 20px; }
-  .answers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: stretch; }
+  .answers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   @media(max-width:480px) { .answers-grid { grid-template-columns: 1fr; } }
   .answer-btn {
     background: rgba(255,255,255,0.06); border: 2px solid rgba(255,255,255,0.1);
     border-radius: 12px; color: #fff; font-family: 'Nunito', sans-serif;
-    font-size: 0.9rem; font-weight: 700; padding: 14px 16px; cursor: pointer;
+    font-size: 0.95rem; font-weight: 700; padding: 14px 16px; cursor: pointer;
     transition: all 0.2s; text-align: left; display: flex; align-items: center; gap: 10px;
-    width: 100%; min-height: 62px; word-break: break-word;
   }
   .answer-btn:hover:not(:disabled) { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); }
-  .answer-btn.correct { border-color: #39d65a; background: rgba(57,214,90,0.2); animation: pop 0.3s ease; }
+  .answer-btn.correct { border-color: #4d9fff; background: rgba(77,159,255,0.2); animation: pop 0.3s ease; }
   .answer-btn.wrong { border-color: var(--red); background: rgba(230,57,70,0.15); }
   .answer-btn:disabled { cursor: default; }
   .answer-letter {
@@ -233,7 +234,7 @@
   <div class="diff-grid fade-in">
     <div class="diff-card easy" onclick="chooseDifficulty('easy')">
       <div>
-        <div class="diff-name" style="color:#39d65a;">🟢 Facile</div>
+        <div class="diff-name" style="color:#4d9fff;">🔵 Facile</div>
         <div class="diff-pts">1 point par bonne réponse</div>
       </div>
     </div>
@@ -284,15 +285,14 @@
 </div>
 
 <script>
-const COLORS = ['#39d65a','#f5c518','#e63946','#4da9ff'];
-const AVATARS = ['🦁','🐯','🦊','🐺'];
+const COLORS = ['#4d9fff','#c8102e','#f5c518','#a855f7'];
+const AVATARS = ['⚽','🥅','👟','🏆'];
 const DIFF_LABELS = { easy: 'Facile', medium: 'Moyen', hard: 'Difficile' };
 const DIFF_PTS = { easy: 1, medium: 2, hard: 3 };
 const LETTERS = ['A','B','C','D'];
 
 const QUESTIONS = {
 easy: [
-  // === RÈGLES DE BASE ===
   { q:"Combien de joueurs y a-t-il dans une équipe de football sur le terrain ?", a:["11","10","12","9"], correct:0 },
   { q:"Quel pays a remporté la Coupe du Monde 2018 ?", a:["France","Croatie","Allemagne","Brésil"], correct:0 },
   { q:"Quelle est la durée réglementaire d'un match de football ?", a:["90 minutes","80 minutes","100 minutes","120 minutes"], correct:0 },
@@ -318,7 +318,7 @@ easy: [
   { q:"Quelle équipe porte le surnom 'Les Diables Rouges' ?", a:["Belgique","Espagne","Portugal","Pays-Bas"], correct:0 },
   { q:"Combien de joueurs participent à un tir au but (péno) ?", a:["1 tireur + 1 gardien","2 tireurs","3 joueurs","Toute l'équipe"], correct:0 },
   { q:"Quel club anglais est surnommé 'The Blues' à Chelsea ?", a:["Chelsea","Everton","Manchester City","Leicester"], correct:0 },
-  { q:"Quelle est la surface de réparation dans le football ?", a:["La surface où le gardien peut utiliser ses mains","La surface centrale délimitant le jeu en attaque","La zone de corner dans les angles du terrain","Le grand rond central au milieu du terrain"], correct:0 },
+  { q:"Quelle est la surface de réparation dans le football ?", a:["La surface où le gardien peut utiliser ses mains","La surface de jeu principale","La zone de corner","Le rond central"], correct:0 },
   { q:"Qui est l'entraîneur de l'équipe de France championne du monde 2018 ?", a:["Didier Deschamps","Laurent Blanc","Raymond Domenech","Zinédine Zidane"], correct:0 },
   { q:"Quel pays a remporté l'Euro 2021 ?", a:["Italie","Angleterre","Espagne","France"], correct:0 },
   { q:"Combien de joueurs forment la ligne défensive dans un 4-4-2 ?", a:["4","3","5","2"], correct:0 },
@@ -327,7 +327,7 @@ easy: [
   { q:"Quel club espagnol est surnommé 'El Atleti' ?", a:["Atlético Madrid","Athletic Bilbao","Almería","Atlético Mineiro"], correct:0 },
   { q:"Quelle compétition se joue entre les équipes nationales de l'Amérique du Sud ?", a:["Copa América","Gold Cup","AFCON","Coupe du Monde"], correct:0 },
   { q:"Quel joueur brésilien porte le numéro 10 dans la tradition ?", a:["Le meneur de jeu","Le gardien","Le défenseur central","L'avant-centre"], correct:0 },
-  { q:"Combien de joueurs sont sur le banc de touche maximum (hors remplaçants entrants) ?", a:["Cela dépend de la compétition","Toujours 7 joueurs maximum","Toujours 5 joueurs maximum","Toujours 11 joueurs maximum"], correct:0 },
+  { q:"Combien de joueurs sont sur le banc de touche maximum (hors remplaçants entrants) ?", a:["Cela dépend de la compétition","Toujours 7","Toujours 5","Toujours 11"], correct:0 },
   { q:"Quel club italien est surnommé 'La Vecchia Signora' ?", a:["Juventus","AC Milan","Inter Milan","AS Roma"], correct:0 },
   { q:"Quel pays a gagné la première Coupe du Monde de l'histoire ?", a:["Uruguay","Argentine","Brésil","Italie"], correct:0 },
   { q:"Quelle couleur de maillot porte l'Italie à domicile ?", a:["Bleu","Rouge","Blanc","Noir"], correct:0 },
@@ -343,248 +343,111 @@ easy: [
   { q:"Quel club londonien joue à Stamford Bridge ?", a:["Chelsea","Arsenal","Tottenham","West Ham"], correct:0 },
   { q:"Combien de points rapporte une victoire en championnat ?", a:["3","2","1","4"], correct:0 },
   { q:"Quel pays a remporté l'Euro 2024 ?", a:["Espagne","Angleterre","Allemagne","France"], correct:0 },
-  { q:"Qui est le meilleur buteur de l'histoire du Real Madrid ?", a:["Cristiano Ronaldo","Raúl","Karim Benzema","Hugo Sánchez"], correct:0 },
-  { q:"Quel numéro de maillot Pelé portait-il avec le Brésil ?", a:["10","9","7","11"], correct:0 },
-  { q:"Quel club est l'ennemi juré du Real Madrid ?", a:["FC Barcelone","Atlético Madrid","Séville","Valencia"], correct:0 },
-  { q:"Qui est surnommé 'O Rei' (Le Roi) au Brésil ?", a:["Pelé","Ronaldo","Ronaldinho","Zico"], correct:0 },
-  { q:"Quel joueur brésilien est surnommé 'Ronaldinho' ?", a:["Ronaldo de Assis Moreira","Ronaldo Nazário","Ronaldo Luís","Roni Vieira"], correct:0 },
-  { q:"Dans quel championnat évolue le Real Madrid ?", a:["Liga Espagnole","Serie A","Premier League","Bundesliga"], correct:0 },
-  { q:"Quel pays a remporté la Coupe du Monde 2006 ?", a:["Italie","France","Allemagne","Portugal"], correct:0 },
-  { q:"Quel pays a remporté la Coupe du Monde 1998 ?", a:["France","Brésil","Italie","Allemagne"], correct:0 },
-  { q:"Quel numéro de maillot Zinédine Zidane portait-il au Real Madrid ?", a:["5","10","7","4"], correct:0 },
-  { q:"Quel club a remporté la Bundesliga le plus de fois ?", a:["Bayern Munich","Borussia Dortmund","Bayer Leverkusen","Schalke 04"], correct:0 },
-  { q:"Quel pays africain a atteint les demi-finales d'une Coupe du Monde pour la première fois en 2022 ?", a:["Maroc","Sénégal","Cameroun","Ghana"], correct:0 },
-  { q:"Quel club américain a signé Lionel Messi en 2023 ?", a:["Inter Miami","LA Galaxy","New York City FC","Toronto FC"], correct:0 },
-  { q:"Quel joueur est le meilleur buteur de l'histoire du FC Barcelone ?", a:["Lionel Messi","César","Johan Cruyff","Ronaldinho"], correct:0 },
-
-  // === GÉOPOLITIQUE ET CONFLITS ===
-  { q:"Quel match est surnommé 'le match de la honte' car les deux équipes semblaient jouer à perdre ?", a:["Allemagne vs Autriche 1982","France vs Espagne 1982","Italie vs Argentine 1978","Brésil vs URSS 1958"], correct:0 },
-  { q:"Quel pays a boycotté la Coupe du Monde 1966 pour protester contre la sous-représentation africaine ?", a:["La majorité des pays africains","Les pays arabes","Le bloc soviétique","L'Amérique du Sud entière"], correct:0 },
-  // === BUSINESS ET MERCATO ===
-  { q:"Quel club a acheté Neymar pour un record mondial de 222 millions d'euros en 2017 ?", a:["Paris Saint-Germain","Manchester United","Real Madrid","Juventus"], correct:0 },
-  { q:"Quel joueur a été transféré en 2023 en Arabie Saoudite pour un salaire annuel record d'environ 200M€ ?", a:["Cristiano Ronaldo","Karim Benzema","Neymar","N'Golo Kanté"], correct:0 },
-  // === STADES ET TEMPLES ===
-  { q:"Comment s'appelle le stade rénové du FC Barcelone inauguré avec un nouveau sponsor en 2024 ?", a:["Spotify Camp Nou","Nou Camp Arena","Camp Nou Stadium","Barcelona Arena"], correct:0 },
-  { q:"Quel stade argentin est surnommé 'El Monumental' et abrite River Plate ?", a:["Estadio Monumental Antonio Vespucio Liberti","La Bombonera de Boca Juniors","Estadio Único Ciudad de La Plata","El Cilindro de Racing Avellaneda"], correct:0 },
-  // === CULTURE POP ET MÉDIAS ===
-  { q:"Dans quel film de 1981, se déroulant dans un camp de prisonniers, Pelé joue-t-il son propre rôle ?", a:["Victoire","Football Story","Pelé Forever","The Beautiful Game"], correct:0 },
-  { q:"Quel jeu vidéo de football a été rebaptisé 'EA Sports FC' après rupture avec la FIFA en 2023 ?", a:["FIFA","PES","Football Manager","Top Spin Football"], correct:0 },
-  // === NUMÉROS ET MAILLOTS ===
-  { q:"Quel numéro de maillot est traditionnellement porté par le numéro 9, l'avant-centre classique ?", a:["9","10","11","7"], correct:0 },
-  { q:"Que signifie le numéro 10 traditionnellement dans le football ?", a:["Le meneur de jeu créatif","Le gardien de but","Le défenseur central","Le latéral gauche"], correct:0 },
-  // === ONE-CLUB MEN ===
-  { q:"Quel joueur a passé toute sa carrière à Manchester United, de 1990 à 2007, sans jamais changer de club ?", a:["Ryan Giggs","Eric Cantona","Bobby Charlton","George Best"], correct:0 },
-  { q:"Quel gardien brésilien est resté fidèle à São Paulo FC pendant 25 ans jusqu'à sa retraite en 2015 ?", a:["Rogério Ceni","Taffarel","Marcos","Dida"], correct:0 },
-  // === FOOTBALL FÉMININ ===
-  { q:"Quel pays a remporté le plus de Coupes du Monde féminines avec 4 titres ?", a:["États-Unis","Allemagne","Norvège","Japon"], correct:0 },
-  { q:"Quel pays a remporté la Coupe du Monde féminine 2023 organisée en Australie et Nouvelle-Zélande ?", a:["Espagne","États-Unis","Angleterre","Suède"], correct:0 },
-  // === DERBYS ET RIVALITÉS ===
-  { q:"Comment s'appelle le derby milanais entre l'AC Milan et l'Inter Milan ?", a:["Derby della Madonnina","Derby di Milano","Derby Lombardo","Derby Rossonero"], correct:0 },
-  { q:"Comment s'appelle le derby entre le Real Madrid et le FC Barcelone ?", a:["El Clásico","El Derby","La Gran Rivalidad","El Partido Grande"], correct:0 },
-  // === SURNOMS ET IDENTITÉS ===
-  { q:"Quel club est surnommé 'Les Canaris' en raison de ses couleurs jaune et vert en Ligue 1 ?", a:["FC Nantes","Sochaux","Toulouse","Metz"], correct:0 },
-  { q:"Quel club anglais est surnommé 'The Toffees' et joue à Goodison Park ?", a:["Everton","Bolton Wanderers","Burnley FC","Aston Villa"], correct:0 },
-  // === ÉPOPÉES DES PETITS POUCETS ===
-  { q:"Quel pays a créé l'une des plus grandes surprises du Mondial 2018 en battant l'Allemagne championne du monde ?", a:["Corée du Sud","Mexique","Suède","Suisse"], correct:0 },
-  { q:"Que signifie l'acronyme 'VAR' utilisé dans le football moderne depuis 2018 ?", a:["Video Assistant Referee","Video Analysis Review","Virtual Assistance Rule","Video Arbitration Review"], correct:0 },
-  // === ARBITRAGE ET TECHNOLOGIE ===
-  { q:"Lors de quelle Coupe du Monde la goal-line technology (GLT) a-t-elle été utilisée pour la première fois ?", a:["Brésil 2014","Russie 2018","Qatar 2022","Allemagne 2006"], correct:0 },
-  { q:"Quel organisme international fixe les règles officielles du football depuis 1886 ?", a:["IFAB","FIFA","UEFA","IOC"], correct:0 },
-  // === CENTRES DE FORMATION ===
-  { q:"Quel club français est réputé pour sa formation et a produit Kylian Mbappé avant son départ pro ?", a:["AS Monaco","Paris Saint-Germain","Olympique Lyonnais","LOSC Lille"], correct:0 },
-  { q:"De quel célèbre centre de formation barcelonais Lionel Messi est-il issu depuis l'âge de 13 ans ?", a:["La Masia du FC Barcelone","Espanyol Barcelone","CE Europa Barcelone","Villarreal CF"], correct:0 },
 ],
 medium: [
-  { q:"Combien de Ballons d'Or Lionel Messi a-t-il remportés (jusqu'en 2024) ?", a:["8","7","6","9"], correct:0 },
-  { q:"Combien de Ballons d'Or Cristiano Ronaldo a-t-il remportés ?", a:["5","6","7","4"], correct:0 },
-  { q:"Quel joueur a remporté le Soulier d'Or européen le plus de fois ?", a:["Cristiano Ronaldo","Lionel Messi","Eusébio","Gerd Müller"], correct:0 },
-  { q:"Quel joueur a remporté la Ligue des Champions et le Ballon d'Or la même année en 2018 ?", a:["Luka Modric","Cristiano Ronaldo","Kylian Mbappé","Raphael Varane"], correct:0 },
-  { q:"Combien de fois Ronaldinho a-t-il remporté le Ballon d'Or ?", a:["1 fois","2 fois","3 fois","0 fois"], correct:0 },
-  { q:"Quel joueur détient le record du plus grand nombre de buts internationaux masculins ?", a:["Cristiano Ronaldo","Ali Daei","Lionel Messi","Miroslav Klose"], correct:0 },
-  { q:"Quel joueur a été surnommé 'R9' et remporté deux Coupes du Monde ?", a:["Ronaldo Nazário","Rivaldo","Ronaldinho","Roberto Carlos"], correct:0 },
-  { q:"Quel est le record de buts de Gerd Müller lors d'une saison de Bundesliga ?", a:["40 buts","38 buts","36 buts","42 buts"], correct:0 },
-  { q:"Quel club détient le record de titres en Serie A italienne ?", a:["Juventus","Inter Milan","AC Milan","AS Roma"], correct:0 },
-  { q:"Quel club a réalisé le triplé (Ligue, Coupe nationale, LDC) en 2009 avec Pep Guardiola ?", a:["FC Barcelone","Bayern Munich","Manchester United","Real Madrid"], correct:0 },
-  { q:"Quel club a remporté 5 Ligues des Champions de 1956 à 1960 ?", a:["Real Madrid","Benfica","AC Milan","Juventus"], correct:0 },
-  { q:"Quel club allemand a remporté le quintuplé en 2020 (Bundesliga, Coupe, LDC, etc.) ?", a:["Bayern Munich","Borussia Dortmund","RB Leipzig","Bayer Leverkusen"], correct:0 },
-  { q:"Combien de fois la Juventus a-t-elle remporté la Serie A d'affilée (record) ?", a:["9","8","7","10"], correct:0 },
-  { q:"Quel club africain a le plus de victoires en Ligue des Champions d'Afrique ?", a:["Al-Ahly","Zamalek","TP Mazembe","Espérance de Tunis"], correct:0 },
-  { q:"Quel est le record de buts inscrits lors d'une seule édition de Coupe du Monde ?", a:["171 buts","161 buts","145 buts","184 buts"], correct:0 },
-  { q:"En quelle année a été fondée l'UEFA ?", a:["1954","1950","1960","1946"], correct:0 },
-  { q:"Quelle était la particularité du Mondial 1950 — pas de finale classique ?", a:["Un tournoi final à la ronde","Une finale annulée pour pluie","Deux équipes déclarées ex-aequo","Une finale jouée à huis clos"], correct:0 },
-  { q:"Quel joueur a marqué le but de la main de Dieu contre l'Angleterre en 1986 ?", a:["Diego Maradona","Lionel Messi","Jorge Valdano","Caniggia"], correct:0 },
-  { q:"Combien de fois le Real Madrid a-t-il remporté la Ligue des Champions ?", a:["15","14","13","12"], correct:0 },
-  { q:"Quel joueur a inscrit le plus de buts en Coupe du Monde toutes éditions confondues ?", a:["Miroslav Klose","Ronaldo Nazário","Gerd Müller","Just Fontaine"], correct:0 },
-  { q:"En quelle année la règle du back-pass au gardien a-t-elle été modifiée ?", a:["1992","1990","1994","1988"], correct:0 },
-  { q:"Quel pays a inventé la tactique du catenaccio ?", a:["Italie","Suisse","Uruguay","Autriche"], correct:0 },
-  { q:"Quel entraîneur est le père du total football des années 1970 ?", a:["Rinus Michels","Johan Cruyff","Louis van Gaal","Guus Hiddink"], correct:0 },
-  { q:"Quel gardien a remporté la Coupe du Monde 2006 avec l'Italie ?", a:["Gianluigi Buffon","Angelo Peruzzi","Marco Amelia","Walter Zenga"], correct:0 },
-  { q:"Quel gardien est surnommé 'La Araña' (L'Araignée) ?", a:["René Higuita","Jorge Campos","José Luis Chilavert","Miguel Reina"], correct:0 },
-  { q:"Quel est le gardien le plus capé de l'histoire des équipes nationales ?", a:["Essam El-Hadary","Gianluigi Buffon","Iker Casillas","Peter Schmeichel"], correct:0 },
-  { q:"Quel est le nombre de groupes lors de la phase de poules du Mondial 2026 (48 équipes) ?", a:["12 groupes de 4","16 groupes de 3","8 groupes de 6","10 groupes de 4 + 2 jokers"], correct:0 },
-  { q:"Combien de temps le gardien peut-il tenir le ballon dans les mains ?", a:["6 secondes","10 secondes","Pas de limite","5 secondes"], correct:0 },
-  { q:"Quelle est la largeur réglementaire des buts en football ?", a:["7,32 mètres","6 mètres","8 mètres","7 mètres"], correct:0 },
-  { q:"Quel joueur a remporté le Ballon d'Or le plus jeune de l'histoire (en 2022) ?", a:["Karim Benzema","Gavi","Cristiano Ronaldo","Thierry Henry"], correct:1 },
-  { q:"Quel est le premier joueur africain à avoir remporté le Ballon d'Or ?", a:["George Weah","Didier Drogba","Samuel Eto'o","Roger Milla"], correct:0 },
-  { q:"Quel joueur a remporté la Ligue des Champions à 5 reprises dont 3 consécutives avec le même club ?", a:["Cristiano Ronaldo","Lionel Messi","Clarence Seedorf","Gareth Bale"], correct:0 },
-  { q:"Quel joueur argentin a marqué le seul but de la finale du Mondial 1978 en prolongation ?", a:["Mario Kempes","Daniel Bertoni","Osvaldo Ardiles","Leopoldo Luque"], correct:0 },
-  { q:"En quelle année Pelé a-t-il marqué son 1000e but en match officiel ?", a:["1969","1970","1971","1968"], correct:0 },
-  { q:"Quel pays est seul à avoir participé à toutes les Coupes du Monde ?", a:["Brésil","Allemagne","Italie","Argentine"], correct:0 },
-  { q:"Quel joueur a réalisé le quadruplé le plus rapide de l'histoire de la Ligue des Champions ?", a:["Robert Lewandowski","Cristiano Ronaldo","Lionel Messi","Raúl González"], correct:0 },
-  { q:"Quel joueur hollandais est surnommé 'Clockwork Orange' lors de l'ère Cruyff ?", a:["Johan Cruyff","Johan Neeskens","Ruud Gullit","Marco van Basten"], correct:0 },
-  { q:"Quel joueur est le meilleur buteur de l'histoire de la Serie A italienne ?", a:["Silvio Piola","Giuseppe Meazza","Roberto Baggio","Gabriel Batistuta"], correct:0 },
-  { q:"Combien de Ballon d'Or Ronaldo (Brésilien) a-t-il remporté ?", a:["2","1","3","0"], correct:0 },
-  { q:"Dans quelle ville se trouve le stade Signal Iduna Park ?", a:["Dortmund","Munich","Cologne","Hambourg"], correct:0 },
-  { q:"Quel pays a remporté la Coupe du Monde 1966 à domicile ?", a:["Angleterre","Allemagne de l'Ouest","Portugal","URSS"], correct:0 },
-  { q:"Quel joueur a été le premier à être expulsé en finale de Coupe du Monde ?", a:["Pedro Monzón","Zinédine Zidane","Claudio Caniggia","Marcel Desailly"], correct:0 },
-  { q:"Quel stade a la plus grande capacité au monde pour le football ?", a:["Rungrado 1er Mai","Wembley Stadium","Camp Nou","Aztèque de Mexico"], correct:0 },
-  { q:"Quelle est l'origine du terme 'hat-trick' au football ?", a:["Cricket — un chapeau offert pour 3 guichets","Baseball — une casquette pour 3 frappes","Rugby — un couvre-chef pour 3 essais","Tennis — un chapeau pour 3 aces de suite"], correct:0 },
-  { q:"Quel joueur a marqué le premier hat-trick de l'histoire de la Coupe du Monde ?", a:["Bert Patenaude","Just Fontaine","Pelé","Gerd Müller"], correct:0 },
-  { q:"Combien de buts a marqué Just Fontaine lors de la Coupe du Monde 1958 ?", a:["13","11","12","15"], correct:0 },
-  { q:"Quel entraîneur a remporté la Ligue des Champions avec 3 clubs différents ?", a:["Carlo Ancelotti","José Mourinho","Pep Guardiola","Zinédine Zidane"], correct:0 },
-  { q:"Quel est le record de victoires consécutives en équipe nationale pour un seul pays ?", a:["Espagne 35 matchs","Brésil 40 matchs","France 22 matchs","Allemagne 18 matchs"], correct:0 },
-  { q:"Quel gardien a le record de clean sheets en Ligue des Champions ?", a:["Iker Casillas","Gianluigi Buffon","Peter Schmeichel","Oliver Kahn"], correct:0 },
-  { q:"Quel club a remporté la Copa Libertadores le plus de fois ?", a:["Independiente","Boca Juniors","River Plate","Santos"], correct:0 },
-  { q:"Quel club africain a atteint la finale de la Coupe du Monde des clubs en 2010 ?", a:["TP Mazembe","Al-Ahly","Raja Casablanca","Wydad Casablanca"], correct:0 },
-  { q:"Quel joueur a remporté la Copa Libertadores ET la Ligue des Champions dans la même carrière ?", a:["Ronaldinho","Neymar","Hulk","Kaká"], correct:0 },
-  { q:"Dans quelle ville se trouve le stade Da Luz, antre du Benfica ?", a:["Lisbonne","Porto","Barcelone","Braga"], correct:0 },
-  { q:"Quel joueur a remporté la Coupe du Monde 1994 et 2002 avec le Brésil ?", a:["Cafu","Ronaldo","Rivaldo","Roberto Carlos"], correct:0 },
-
-  // === GÉOPOLITIQUE ET CONFLITS ===
-  { q:"Quel conflit armé réel de 4 jours en 1969 a été déclenché par un match de qualification Coupe du Monde ?", a:["Guerre du Football","Guerre des Balkans","Conflit irano-irakien","Guerre civile yougoslave"], correct:0 },
-  { q:"Pourquoi la Yougoslavie a-t-elle été exclue de l'Euro 1992 après s'être qualifiée ?", a:["Sanctions ONU pour la guerre en Bosnie-Herzégovine","Corruption d'arbitres avérée en qualifications","Violences en tribunes lors des derniers matchs","Refus collectif de jouer à domicile imposé"], correct:0 },
-  // === BUSINESS ET MERCATO ===
-  { q:"Quel fonds souverain d'Arabie Saoudite a racheté Newcastle United en 2021 pour 305 millions de livres ?", a:["Public Investment Fund","Abu Dhabi United Group","Qatar Investment Authority","SoftBank Vision Fund"], correct:0 },
-  { q:"Quel agent de joueurs, décédé en 2021, représentait notamment Zlatan Ibrahimovic et Paul Pogba ?", a:["Mino Raiola","Jorge Mendes","Pini Zahavi","Jonathan Barnett"], correct:0 },
-  { q:"Quel est le premier club à avoir dépassé 1 milliard d'euros de revenus annuels selon le rapport Deloitte ?", a:["Real Madrid","Manchester United","FC Barcelone","Bayern Munich"], correct:0 },
-  // === STADES ET TEMPLES ===
-  { q:"Dans quelle ville se trouve le stade Aztèque, théâtre des finales des Mondials 1970 et 1986 ?", a:["Mexico City","Guadalajara","Monterrey","Puebla"], correct:0 },
-  { q:"Quel stade du Qatar 2022 a été construit avec des conteneurs maritimes et démonté après la compétition ?", a:["Stadium 974","Al Bayt Stadium","Lusail Stadium","Al Janoub Stadium"], correct:0 },
-  { q:"Quel est le stade le plus ancien encore utilisé en football professionnel anglais, ouvert en 1875 ?", a:["Deepdale","Goodison Park","St James Park","Bramall Lane"], correct:0 },
-  // === CULTURE POP ET MÉDIAS ===
-  { q:"Quel livre d'Eduardo Galeano (1995) est considéré comme une bible littéraire du football mondial ?", a:["Football, ombre et lumière","La Balle au Pied","Onze joueurs","La beauté du jeu"], correct:0 },
-  { q:"Quel documentaire Netflix sur un club de Championship anglais a relancé l'intérêt pour les clubs modestes ?", a:["Sunderland 'Til I Die","All or Nothing Arsenal","Welcome to Wrexham","The English Game"], correct:0 },
-  // === NUMÉROS ET MAILLOTS ===
-  { q:"Quel numéro portait Zinédine Zidane lors de la finale du Mondial 1998 où il marqua deux buts de la tête ?", a:["10","7","5","6"], correct:0 },
-  { q:"Dans quel pays a-t-on introduit pour la première fois des numéros dans le dos des joueurs lors d'un match officiel (1928) ?", a:["Angleterre","France","Argentine","Brésil"], correct:0 },
-  // === ONE-CLUB MEN ===
-  { q:"Quel légendaire défenseur central de l'AC Milan y a joué toute sa carrière de 1985 à 2009 sans jamais changer de club ?", a:["Paolo Maldini","Franco Baresi","Alessandro Costacurta","Filippo Inzaghi"], correct:0 },
-  { q:"Quel joueur de l'Athletic Bilbao, respectant leur règle de ne recruter que des joueurs basques, y a joué de 1990 à 2006 ?", a:["Julen Guerrero","Andoni Zubizarreta","Joseba Etxeberria","Mikel Lasa"], correct:0 },
-  // === TRAÎTRES ET RIVAUX ===
-  { q:"Quel joueur de Tottenham a rejoint Arsenal en 2001 en tant que joueur libre, devenant 'traître' pour les Spurs ?", a:["Sol Campbell","Nicolas Anelka","Patrick Vieira","Emmanuel Petit"], correct:0 },
-  { q:"Quel joueur du FC Barcelone a signé au Real Madrid en 2000, acceptant un chèque record de 60 millions d'euros ?", a:["Luis Figo","Michael Laudrup","Ronaldo Nazário","Samuel Eto'o"], correct:0 },
-  // === FOOTBALL FÉMININ ===
-  { q:"Quelle joueuse brésilienne détient le record de buts en Coupe du Monde féminine avec 17 réalisations ?", a:["Marta Vieira da Silva","Abby Wambach","Christine Sinclair","Birgit Prinz"], correct:0 },
-  { q:"Quel club espagnol a remporté la Ligue des Champions féminine UEFA en 2021 et 2023 ?", a:["FC Barcelone","Real Madrid Femenino","Atlético Madrid","Levante UD"], correct:0 },
-  // === ARBITRAGE ET TECHNOLOGIE ===
-  { q:"En quelle année la FIFA a-t-elle officiellement autorisé la VAR dans ses compétitions majeures ?", a:["2018","2016","2014","2020"], correct:0 },
-  { q:"Qu'est-ce que le système 'semi-automatique hors-jeu' utilisé au Qatar 2022 ?", a:["Caméras + IA traçant 29 points du corps pour détecter le hors-jeu en temps réel","Caméras 360° avec ralenti ultra-rapide analysant la position des pieds","Capteur dans le ballon + tracé manuel de la ligne de hors-jeu sur écran","Arbitre assistant virtuel connecté à une tablette gérant les positions"], correct:0 },
-  // === CENTRES DE FORMATION ===
-  { q:"Quel club anglais a vu émerger la 'Class of 92' dont Beckham, Scholes, Giggs et les frères Neville ?", a:["Manchester United","Liverpool FC","Arsenal FC","Tottenham Hotspur"], correct:0 },
-  { q:"Quel est le centre de formation du Real Madrid, inauguré à Valdebebas en 2005 ?", a:["Ciudad Real Madrid","La Fábrica Real Madrid","Academia Bernabéu","Centro Deportivo Madridista"], correct:0 },
-  // === DERBYS ET RIVALITÉS ===
-  { q:"Comment s'appelle le derby romain opposant l'AS Roma et la Lazio SS ?", a:["Derby della Capitale","Derby Romano","Derby del Tevere","La Rivalità Eterna"], correct:0 },
-  { q:"Quel derby écossais entre Celtic et Rangers est le plus ancien et passionné des îles Britanniques ?", a:["L'Old Firm Derby","The Glasgow Battle","Scottish Classic","Battle of Britain"], correct:0 },
-  // === ÉPOPÉES DES PETITS POUCETS ===
-  { q:"Lors du Mondial 2002 co-organisé, quel pays a éliminé l'Italie et l'Espagne pour atteindre les demi-finales ?", a:["Corée du Sud","Japon","Turquie","Sénégal"], correct:0 },
-  { q:"Quel club de Championship (D2) anglais a remporté la FA Cup en 2013, battant Manchester City en finale ?", a:["Wigan Athletic","Millwall FC","Barnsley FC","Cardiff City"], correct:0 },
-  // === SURNOMS ET IDENTITÉS ===
-  { q:"Quel club anglais est surnommé 'The Hornets' (Les Frelons) avec ses couleurs jaune et noire ?", a:["Watford FC","Hull City","Norwich City","Oxford United"], correct:0 },
-  { q:"Quel club argentin est surnommé 'El Ciclón' (Le Cyclone) en raison de son jeu offensif historique ?", a:["San Lorenzo de Almagro","River Plate","Independiente","Racing Club"], correct:0 },
+  { q:"En quelle année Zinédine Zidane a-t-il remporté son premier titre en Ligue des Champions ?", a:["2002","1998","2000","2004"], correct:0 },
+  { q:"Quel joueur a marqué lors de la finale de la Ligue des Champions 2005 pour Liverpool face au Milan AC ?", a:["Steven Gerrard","Djibril Cissé","Vladimir Smicer","Xabi Alonso"], correct:0 },
+  { q:"Combien de Coupes du Monde l'Allemagne a-t-elle remportées au total ?", a:["4","3","5","2"], correct:0 },
+  { q:"Quel joueur détient le record de buts marqués en une seule Coupe du Monde ?", a:["Just Fontaine","Gerd Müller","Ronaldo Nazário","Sándor Kocsis"], correct:0 },
+  { q:"Quel pays a remporté la Copa América le plus de fois dans l'histoire ?", a:["Uruguay","Argentine","Brésil","Chili"], correct:0 },
+  { q:"Quel club a remporté la Premier League en 2015-2016 de manière totalement inattendue ?", a:["Leicester City","Watford","Crystal Palace","Burnley"], correct:0 },
+  { q:"Quel joueur a remporté la Ligue des Champions 2006 avec le FC Barcelone ?", a:["Ronaldinho","Neymar","Kaká","Ronaldo Nazário"], correct:0 },
+  { q:"Quel est le vrai prénom de naissance de Ronaldinho ?", a:["Ronaldo de Assis Moreira","Ronaldo Luís Nazário","Anderson Luis de Abreu","Ronaldo Vieira Cunha"], correct:0 },
+  { q:"Combien de buts Gerd Müller a-t-il inscrit lors de la Coupe du Monde 1970 au Mexique ?", a:["10 buts","8 buts","7 buts","9 buts"], correct:0 },
+  { q:"Quel club a remporté le titre de Serie A 2023-2024 ?", a:["Inter Milan","AC Milan","Juventus","Napoli"], correct:0 },
+  { q:"En quelle année le FC Barcelone a-t-il réalisé son premier triplé historique sous Johan Cruyff ?", a:["1992","1989","1994","1991"], correct:0 },
+  { q:"Quel gardien a arrêté 3 tirs au but lors de la finale de la Coupe du Monde 2006 ?", a:["Gianluigi Buffon","Oliver Kahn","Iker Casillas","Pepe Reina"], correct:0 },
+  { q:"Quel joueur a inscrit un but de retourné acrobatique en finale de Ligue des Champions 2018 contre Liverpool ?", a:["Gareth Bale","Cristiano Ronaldo","Karim Benzema","Marcelo"], correct:0 },
+  { q:"Quel pays a organisé la Coupe du Monde en 2002 conjointement avec la Corée du Sud ?", a:["Japon","Chine","Australie","Taïwan"], correct:0 },
+  { q:"Quel club portugais a remporté la Ligue des Champions en 2004 sous José Mourinho ?", a:["FC Porto","Benfica","Sporting CP","Braga"], correct:0 },
+  { q:"Quelle nation africaine a atteint les demi-finales d'une Coupe du Monde pour la première fois en 2022 ?", a:["Maroc","Sénégal","Ghana","Cameroun"], correct:0 },
+  { q:"Quel joueur français a remporté la Ligue des Champions avec deux clubs différents ?", a:["Djibril Cissé","Nicolas Anelka","Lassana Diarra","Florent Malouda"], correct:0 },
+  { q:"Combien de fois la Ligue des Champions a-t-elle été remportée consécutivement par le même club (record) ?", a:["3 fois","2 fois","4 fois","5 fois"], correct:0 },
+  { q:"Quel joueur hollandais a remporté le Ballon d'Or en 1992 ?", a:["Marco van Basten","Ruud Gullit","Frank Rijkaard","Dennis Bergkamp"], correct:0 },
+  { q:"Quel est le nombre de buts inscrits par Thierry Henry sous le maillot de l'équipe de France ?", a:["51 buts","44 buts","62 buts","38 buts"], correct:0 },
+  { q:"Quel club a remporté la Ligue des Champions 2019 en battant Tottenham en finale ?", a:["Liverpool","Ajax","Manchester City","Barcelone"], correct:0 },
+  { q:"En quelle année le Borussia Dortmund a-t-il remporté sa seule Ligue des Champions ?", a:["1997","2001","1993","1999"], correct:0 },
+  { q:"Quel joueur sénégalais a inscrit le premier but de l'histoire de son pays en Coupe du Monde, contre la France en 2002 ?", a:["Pape Bouba Diop","El-Hadji Diouf","Salif Diao","Ferdinand Coly"], correct:0 },
+  { q:"Quel entraîneur a dirigé l'Italie lors de sa victoire en Coupe du Monde 2006 ?", a:["Marcello Lippi","Fabio Capello","Roberto Donadoni","Cesare Prandelli"], correct:0 },
+  { q:"Quel club a terminé la saison de Liga 2023-2024 invaincu sur tout le championnat ?", a:["Aucun club","Girona FC","FC Barcelone","Atlético Madrid"], correct:0 },
+  { q:"Combien de Ballons d'Or Cristiano Ronaldo a-t-il remportés ?", a:["5","4","6","3"], correct:0 },
+  { q:"Quel joueur a été surnommé 'El Pibe de Oro' ?", a:["Diego Maradona","Lionel Messi","Mario Kempes","Ángel Di María"], correct:0 },
+  { q:"Quel club a remporté la Bundesliga 2023-2024 pour la première fois de son histoire ?", a:["Bayer Leverkusen","Borussia Dortmund","RB Leipzig","Eintracht Francfort"], correct:0 },
+  { q:"Quel joueur anglais a remporté la Coupe du Monde 1966 et inscrit un hat-trick en finale ?", a:["Geoff Hurst","Bobby Charlton","Martin Peters","Roger Hunt"], correct:0 },
+  { q:"Dans quel pays se trouve le stade De Kuip, antre du Feyenoord Rotterdam ?", a:["Pays-Bas","Belgique","Allemagne","Danemark"], correct:0 },
+  { q:"Quel joueur a marqué le but vainqueur de la finale de la Copa América 2021 pour l'Argentine contre le Brésil ?", a:["Ángel Di María","Lionel Messi","Lautaro Martínez","Rodrigo De Paul"], correct:0 },
+  { q:"Quel gardien légendaire du Benfica a remporté la Coupe d'Europe des clubs champions en 1961 et 1962 ?", a:["Costa Pereira","Vítor Baía","José Pereira","Rui Patrício"], correct:0 },
+  { q:"Quel est le record de buts marqués par Lionel Messi en une année civile complète ?", a:["91 buts en 2012","79 buts en 2011","86 buts en 2010","73 buts en 2013"], correct:0 },
+  { q:"Quel club turc a remporté la Ligue Europa en 2024, première victoire d'un club turc dans cette compétition ?", a:["Galatasaray","Fenerbahçe","Trabzonspor","Beşiktaş"], correct:0 },
+  { q:"Combien de fois Roberto Carlos a-t-il remporté la Ligue des Champions avec le Real Madrid ?", a:["3 fois","2 fois","4 fois","1 fois"], correct:0 },
+  { q:"Quel joueur camerounais légendaire a marqué contre l'Argentine au Mondial 1990 à l'âge de 38 ans ?", a:["Roger Milla","François Omam-Biyik","Thomas Nkono","Rigobert Song"], correct:0 },
+  { q:"Quel club a remporté la FA Cup 2024 en battant Manchester City en finale ?", a:["Manchester United","Chelsea","Liverpool","Arsenal"], correct:0 },
+  { q:"Quelle est la nationalité de l'entraîneur qui a mené le Maroc en demi-finale du Mondial 2022 ?", a:["Marocaine","Espagnole","Française","Tunisienne"], correct:0 },
+  { q:"Quel joueur allemand a remporté la Coupe du Monde comme joueur puis comme entraîneur ?", a:["Franz Beckenbauer","Helmut Schön","Berti Vogts","Sepp Herberger"], correct:0 },
+  { q:"Quel club a remporté la Copa Libertadores 2023 ?", a:["Fluminense","Boca Juniors","Flamengo","Athletico Paranaense"], correct:0 },
+  { q:"Combien de fois l'Ajax Amsterdam a-t-il remporté la Ligue des Champions ?", a:["4 fois","3 fois","5 fois","2 fois"], correct:0 },
+  { q:"Quel joueur a inscrit le plus de buts en sélection nationale dans l'histoire du football ?", a:["Cristiano Ronaldo","Lionel Messi","Ali Daei","Miroslav Klose"], correct:0 },
+  { q:"En quelle année le PSG a-t-il été fondé ?", a:["1970","1963","1975","1980"], correct:0 },
+  { q:"Quel milieu de terrain a remporté la Ligue des Champions 2021 avec Chelsea ?", a:["N'Golo Kanté","Mateo Kovačić","Édouard Mendy","Riyad Mahrez"], correct:0 },
+  { q:"Quel stade accueille les matchs à domicile de l'équipe nationale d'Angleterre ?", a:["Wembley","Old Trafford","St James Park","Etihad Stadium"], correct:0 },
+  { q:"Quel joueur a été le premier à marquer 5 buts lors d'un seul match de Coupe du Monde moderne ?", a:["Oleg Salenko contre le Cameroun en 1994","Just Fontaine en 1958","Sándor Kocsis en 1954","Gerd Müller en 1970"], correct:0 },
+  { q:"Quel club a remporté la Ligue 1 française en 2024 ?", a:["PSG","Monaco","Nice","Brest"], correct:0 },
+  { q:"Quel joueur suédois a été désigné meilleur joueur de la Liga espagnole en 2012 ?", a:["Zlatan Ibrahimovic","Henrik Larsson","Albin Ekdal","Samuel Armenteros"], correct:0 },
+  { q:"Quel pays a remporté le premier Championnat d'Europe des nations en 1960 ?", a:["URSS","Yougoslavie","France","Tchécoslovaquie"], correct:0 },
+  { q:"Quel joueur a quitté Liverpool pour rejoindre le FC Barcelone en janvier 2018 pour 160 millions d'euros ?", a:["Philippe Coutinho","Mohamed Salah","Sadio Mané","Roberto Firmino"], correct:0 },
 ],
 hard: [
-  { q:"Quel joueur détient le record du plus grand nombre de passes décisives en Ligue des Champions ?", a:["Cristiano Ronaldo","Lionel Messi","Karim Benzema","Ángel Di María"], correct:0 },
-  { q:"Combien de buts Gerd Müller a-t-il marqués en Bundesliga en carrière ?", a:["365 buts","338 buts","300 buts","400 buts"], correct:0 },
-  { q:"Quel joueur a marqué le plus grand nombre de buts lors d'une seule saison de Serie A ?", a:["Gonzalo Higuaín","Gabriel Batistuta","Roberto Baggio","Silvio Piola"], correct:0 },
-  { q:"En quelle saison Lionel Messi a-t-il inscrit son record de 91 buts en une année civile ?", a:["2012","2011","2010","2013"], correct:0 },
-  { q:"Quel est le record du joueur ayant joué le plus de matchs en Ligue des Champions ?", a:["Iker Casillas","Cristiano Ronaldo","Xavi Hernández","Ryan Giggs"], correct:0 },
-  { q:"Quel gardien a le record de minutes consécutives sans but encaissé en Coupe du Monde ?", a:["Walter Zenga","Gianluigi Buffon","Peter Shilton","Gordon Banks"], correct:0 },
-  { q:"Quel joueur a inscrit le plus de buts en finale de Coupe du Monde (toutes éditions) ?", a:["Vavá","Pelé","Geoff Hurst","Zinédine Zidane"], correct:0 },
-  { q:"Quel arbitre a sifflé la finale de la Coupe du Monde 2006 ?", a:["Horacio Elizondo","Pierluigi Collina","Howard Webb","Mark Clattenburg"], correct:0 },
-  { q:"Quel pays a inventé le jeu de balle Cuju, ancêtre du football, vers 200 av. J.-C. ?", a:["Chine","Grèce","Rome","Mexique"], correct:0 },
-  { q:"Lors du 'Miracle de Berne' en 1954, quelle équipe a battu la Hongrie en finale ?", a:["Allemagne de l'Ouest","Italie","Tchécoslovaquie","Suède"], correct:0 },
-  { q:"Quel est le score du célèbre 'Maracanazo' lors du Mondial 1950 ?", a:["Uruguay 2-1 Brésil","Uruguay 3-1 Brésil","Uruguay 1-0 Brésil","Uruguay 2-0 Brésil"], correct:0 },
-  { q:"Quel club a perdu la finale de la Ligue des Champions à la fois en 1999 et 2012 ?", a:["Bayern Munich","Juventus","Benfica","Valencia"], correct:0 },
-  { q:"Lors de quelle Coupe du Monde la règle du but en or a-t-elle été utilisée pour la première fois ?", a:["France 1998","Corée/Japon 2002","USA 1994","Allemagne 2006"], correct:0 },
-  { q:"Quelle est la hauteur réglementaire de la barre transversale d'un but ?", a:["2,44 mètres","2,50 mètres","2,35 mètres","2,40 mètres"], correct:0 },
-  { q:"Lors d'un tir au but raté puis retapé par le tireur, qu'est-ce qui se passe ?", a:["But refusé, le tir est terminé","Nouveau tir accordé","Corner accordé","L'équipe adverse tire à la place"], correct:0 },
-  { q:"Combien de mètres les joueurs doivent-ils reculer lors d'un coup franc indirect ?", a:["9,15 mètres","10 mètres","5 mètres","8 mètres"], correct:0 },
-  { q:"Quelle est la largeur minimale d'un terrain de football selon les règles FIFA pour un match international ?", a:["64 mètres","50 mètres","70 mètres","60 mètres"], correct:0 },
-  { q:"Quel joueur a remporté le Soulier d'Or européen lors de la saison 2010-11 ?", a:["Lionel Messi","Cristiano Ronaldo","Robin van Persie","Ruud van Nistelrooy"], correct:0 },
-  { q:"Quel est le premier joueur à avoir marqué lors d'une finale de Coupe du Monde, d'une finale de Ligue des Champions et d'une finale de CAN ?", a:["Samuel Eto'o","Didier Drogba","Riyad Mahrez","El-Hadary"], correct:0 },
-  { q:"Quel est le seul entraîneur à avoir remporté la Coupe du Monde deux fois ?", a:["Vittorio Pozzo","Helmut Schön","Didier Deschamps","Franz Beckenbauer"], correct:0 },
-  { q:"Quel entraîneur détient le record de matchs dirigés en Ligue des Champions ?", a:["Alex Ferguson","Carlo Ancelotti","Pep Guardiola","José Mourinho"], correct:0 },
-  { q:"Quel entraîneur a remporté le titre national dans 5 championnats différents ?", a:["Carlo Ancelotti","José Mourinho","Sven-Göran Eriksson","Arsène Wenger"], correct:0 },
-  { q:"Quel entraîneur a inventé le système WM (3-2-2-3) qui domina le football des années 1930 ?", a:["Herbert Chapman","Vittorio Pozzo","Jimmy Hogan","Hugo Meisl"], correct:0 },
-  { q:"Quel club a remporté la Coupe Intercontinentale le plus de fois ?", a:["Real Madrid","Nacional Montevideo","Ajax","Boca Juniors"], correct:0 },
-  { q:"Quel joueur est le seul à avoir remporté la Coupe du Monde avec deux nations différentes ?", a:["Aucun — règles FIFA empêchent cela","Robert Prosinecki","Luis Monti","Enrique Ballesteros"], correct:2 },
-  { q:"Quel joueur a le record de dribbles réussis en une seule saison de Liga (112 en 2014-15) ?", a:["Lionel Messi","Neymar","Isco","Pedro"], correct:0 },
-  { q:"Lors de la Coupe du Monde 1970, quel match est appelé 'le match du siècle' ?", a:["Italie vs Allemagne de l'Ouest","Brésil vs Angleterre","Brésil vs Italie","Brésil vs Uruguay"], correct:0 },
-  { q:"Quel joueur a remporté la Ligue des Champions avec l'Ajax, puis perdu 2 finales avec la Juventus dans les années 90 ?", a:["Zinédine Zidane — non. Didier Deschamps","Didier Deschamps","Edgar Davids","Christian Vieri"], correct:1 },
-  { q:"Combien de buts Miroslav Klose a-t-il marqués en Coupes du Monde (record mondial) ?", a:["16","15","14","17"], correct:0 },
-  { q:"Quel joueur est devenu champion du monde senior, olympique et U20 avec l'Argentine dans la même décennie ?", a:["Ángel Di María","Lionel Messi","Nicolás Otamendi","Sergio Agüero"], correct:0 },
-  { q:"Quel est le terme exact désignant l'infraction quand le gardien avance avant le tir au but ?", a:["Encroachment","Infringement","Goalkeeper breach","Penalty reset"], correct:0 },
-  { q:"Quel joueur a été le plus jeune à marquer en finale de Coupe du Monde ?", a:["Pelé","Kylian Mbappé","Cesc Fàbregas","Michael Owen"], correct:0 },
-  { q:"Quelle est la seule Coupe du Monde où il n'y a eu aucun carton rouge décerné sur tout le tournoi ?", a:["Mondial 1954","Mondial 1930","Mondial 1966","Mondial 1950"], correct:1 },
-  { q:"Quel joueur détient le record du plus grand nombre de tirs au but réussis en Coupe du Monde ?", a:["Iker Casillas — record officieux de 5 pénaltys arrêtés","Roberto Baggio — tireur le plus précis","Andreas Brehme — 100% de réussite sur ses 4 tentatives","Peter Shilton — premier gardien à arrêter 3 pénaltys en CdM"], correct:0 },
-  { q:"En quelle année la règle des 3 points pour une victoire a-t-elle été généralisée par la FIFA ?", a:["1994","1990","1998","1986"], correct:0 },
-  { q:"Quel club a remporté la Ligue des Champions 2024 ?", a:["Real Madrid","Borussia Dortmund","Bayern Munich","Manchester City"], correct:0 },
-  { q:"Quel joueur est le premier à avoir inscrit 40 buts ou plus dans deux championnats différents ?", a:["Cristiano Ronaldo","Lionel Messi","Robert Lewandowski","Gerd Müller"], correct:0 },
-  { q:"Quel pays a remporté la Copa América record en 2024, portant son total à 16 victoires ?", a:["Argentine","Uruguay","Brésil","Chili"], correct:0 },
-  { q:"Quel est le seul joueur à avoir remporté 4 Ligues des Champions avec 2 clubs différents ?", a:["Cristiano Ronaldo","Keylor Navas","Clarence Seedorf","Dani Alves"], correct:2 },
-  { q:"Lors du Mondial 2022, quel pays est devenu le premier à remonter un déficit de 2 buts pour gagner en finale depuis 1966 ?", a:["Argentine","France","Croatie","Maroc"], correct:0 },
-  { q:"Combien de fois la France a-t-elle atteint la finale de la Coupe du Monde ?", a:["3 fois","2 fois","4 fois","1 fois seulement"], correct:0 },
-  { q:"Quel joueur a remporté la Copa Libertadores avec Flamengo et marqué en finale de Champions League avec Barcelone ?", a:["Personne à ce jour — aucun joueur n'a réalisé les deux","Adriano — Copa Libertadores 2006 et Ligue des Champions 2010","Ronaldo de Lima — Copa Libertadores 2000 et LDC 1998","Julio César — Copa Libertadores 2008 et LDC 2010"], correct:0 },
-  { q:"Quel gardien a arrêté le plus de pénaltys dans l'histoire de la Ligue des Champions en phases à élimination directe ?", a:["Keylor Navas","Iker Casillas","Edwin van der Sar","Gianluigi Buffon"], correct:0 },
-  { q:"Combien de fois l'Allemagne (incluant RFA) a-t-elle atteint la finale de la Coupe du Monde ?", a:["8 fois","7 fois","6 fois","9 fois"], correct:0 },
-  { q:"Quel joueur était surnommé 'Il Divin Codino' (La Divine Queue de Cheval) ?", a:["Roberto Baggio","Alessandro Del Piero","Paolo Maldini","Franco Baresi"], correct:0 },
-  { q:"Quel est le seul pays à avoir remporté les Coupes du Monde masculine ET féminine dans la même année ?", a:["Aucun pays n'a jamais réalisé cela en même année","Les États-Unis l'ont réalisé en 1991 et 1999","L'Allemagne l'a réalisé en 2003 et 2007","La Norvège l'a réalisé en 1995 et 1999"], correct:0 },
-  { q:"Combien de fois le Brésil a-t-il atteint le podium de la Coupe du Monde depuis 2002 ?", a:["Aucune fois","Une seule fois","Deux fois","Trois fois"], correct:0 },
-  { q:"Lors du 'match de la honte' 1982 (Allemagne 1-0 Autriche), quel résultat éliminait les deux équipes ?", a:["Victoire autrichienne ou tout nul","Victoire allemande par au moins 2 buts","Match nul exact 2-2","Victoire 3-0 ou plus pour l'Allemagne"], correct:0 },
-  { q:"Pourquoi la Rhodésie (futur Zimbabwe) a-t-elle été exclue des qualifications Coupe du Monde 1970 après qualification ?", a:["Apartheid racial — pression africaine contre le régime de Ian Smith","Corruption d'arbitres — deux matchs annulés par la FIFA","Violence en tribunes — interdiction de stade prononcée","Non-paiement — arriérés de cotisation FIFA depuis 3 ans"], correct:0 },
-  { q:"Quel dirigeant irakien faisait torturer des joueurs de la sélection nationale après chaque défaite ?", a:["Uday Hussein","Saddam Hussein lui-même","Tariq Aziz","Ali Hassan al-Majid"], correct:0 },
-  // === BUSINESS ET MERCATO ===
-  { q:"Quel est le premier club de football à avoir été coté en Bourse (London Stock Exchange, 1983) ?", a:["Tottenham Hotspur","Manchester United","Arsenal","Millwall"], correct:0 },
-  { q:"Quel est le modèle économique dit 'moneyball' appliqué au football par Brentford FC pour concurrencer les grands clubs ?", a:["Recrutement par données statistiques","Vente des meilleurs joueurs chaque saison","Partenariat avec un club américain","Recrutement ciblé en Scandinavie"], correct:0 },
-  { q:"Quel club espagnol a déclaré une dette de 1,35 milliard d'euros en 2021 révélant une crise financière structurelle ?", a:["FC Barcelone","Real Madrid","Atlético Madrid","Valencia CF"], correct:0 },
-  // === STADES ET TEMPLES ===
-  { q:"Quel architecte star a conçu le stade de l'Allianz Arena de Munich inauguré en 2005, avec sa façade gonflable ?", a:["Herzog & de Meuron","Renzo Piano","Norman Foster","Zaha Hadid"], correct:0 },
-  { q:"Combien de spectateurs le Maracanã de Rio pouvait-il contenir lors du Mondial 1950 à sa capacité maximale historique ?", a:["199 854 spectateurs","150 000 spectateurs","175 000 spectateurs","220 000 spectateurs"], correct:0 },
-  { q:"Quel est le nom exact du stade de Dortmund, renommé depuis 2005 avec un sponsor, autrefois appelé Westfalenstadion ?", a:["BVB Stadion Dortmund","Westfalen Arena Dortmund","Revierderby Stadion","Ruhr Arena Dortmund"], correct:0 },
-  // === CULTURE POP ET MÉDIAS ===
-  { q:"Quel auteur argentin a écrit 'Maradona, la main de Dieu' (biographie 1996) qui fait référence en littérature sportive ?", a:["Daniel Arcucci et Eduardo Sacheri — la plus célèbre est de Jimmy Burns","Jimmy Burns","Osvaldo Soriano","Roberto Fontanarrosa"], correct:1 },
-  { q:"Quel film de fiction sorti en 2002 mettant en scène des jeunes femmes sikhes jouant au football a popularisé le foot féminin en Grande-Bretagne ?", a:["Bend It Like Beckham","Goal!","The Damned United","Kicking and Screaming"], correct:0 },
-  { q:"Quel est le titre exact du documentaire en 4 épisodes sur Pelé diffusé sur Netflix en 2021 ?", a:["Pelé","Pelé: The King","O Rei","The Beautiful Game: Pelé"], correct:0 },
-  // === NUMÉROS ET MAILLOTS ===
-  { q:"En quelle année la Premier League anglaise a-t-elle introduit les numéros fixes par joueur sur toute la saison (et non 1-11 par match) ?", a:["1993-94","1990-91","1997-98","1985-86"], correct:0 },
-  { q:"Quel joueur a porté le numéro 23 iconique au Real Madrid en hommage à Michael Jordan, popularisant ce choix ?", a:["David Beckham","Ronaldo Nazário","Steve McManaman","Nicolas Anelka"], correct:0 },
-  { q:"Quel club a été le premier à arborer un logo de sponsor maillot en match officiel et dans quel pays ?", a:["Eintracht Braunschweig","Liverpool FC","Ajax Amsterdam","Juventus Turin"], correct:0 },
-  // === ONE-CLUB MEN ===
-  { q:"Quel joueur brésilien a marqué 1283 buts officiels pour Santos FC et ne porta jamais d'autre maillot en club brésilien ?", a:["Pelé","Ronaldo Nazário","Zico","Garrincha"], correct:0 },
-  { q:"Quel est le record de matchs joués pour un seul club dans l'histoire du football professionnel mondial ?", a:["Matt Le Tissier — non. Peter Shilton — non. Billy Bonds: 663 avec West Ham","Billy Bonds","Peter Bonetti","John Trollope"], correct:3 },
-  { q:"Quel milieu de terrain catalan, formé à la Masia, a joué 767 matchs avec le FC Barcelone avant de partir en 2015 ?", a:["Xavi Hernández","Andrés Iniesta","Puyol","Víctor Valdés"], correct:0 },
-  // === TRAÎTRES ET RIVAUX ===
-  { q:"Quel joueur du Real Madrid, après avoir été sifflé lors d'un Clásico pour mauvaise performance, est parti au Barça en 1994 ?", a:["Michael Laudrup","Bernd Schuster","Hugo Sánchez","Emilio Butragueño"], correct:0 },
-  { q:"Quel est le terme argentin désignant un joueur qui change de camp vers le rival historique, devenant persona non grata ?", a:["Traidor — spécifiquement 'Vende Patria' en Argentine","Renegado — terme utilisé en Colombie et Pérou","Vendido — terme courant au Mexique et au Chili","Judas — terme populaire en Angleterre pour les mêmes actes"], correct:0 },
-  // === FOOTBALL FÉMININ ===
-  { q:"Quel est le record de spectateurs pour un match de football féminin, établi lors des JO de Los Angeles 1999 ?", a:["90 185 spectateurs","75 000 spectateurs","105 000 spectateurs","65 000 spectateurs"], correct:0 },
-  { q:"Quelle joueuse norvégienne a refusé le Ballon d'Or féminin 2018 lors de la cérémonie pour protester contre le manque de médiatisation du foot féminin ?", a:["Ada Hegerberg","Caroline Graham Hansen","Lisa Klaveness","Ingrid Marie Spord"], correct:0 },
-  // === ARBITRAGE ET TECHNOLOGIE ===
-  { q:"Combien de points du corps humain le système de détection de hors-jeu semi-automatique du Qatar 2022 analysait-il par joueur ?", a:["29 points corporels à 50 images par seconde","10 points à 25 images par seconde","50 points à 100 images","15 points à 60 images par seconde"], correct:0 },
-  { q:"Quel est l'article exact des Lois du Jeu IFAB qui définit le hors-jeu (Law 11) et depuis quand n'a-t-il pas subi de révision majeure ?", a:["Law 11 — modifiée en 1997 et 2005","Law 11 — inchangée depuis 1938","Law 9 — révisée en 2012","Law 11 — réécrite lors du congrès 2018"], correct:0 },
-  { q:"Quel arbitre international est le seul à avoir reçu le prix FIFA du meilleur arbitre de l'année deux fois consécutives (2000 et 2001) ?", a:["Pierluigi Collina","Howard Webb","Markus Merk","Kim Milton Nielsen"], correct:0 },
-  // === CENTRES DE FORMATION ===
-  { q:"Combien de joueurs formés à la Masia du FC Barcelone jouaient simultanément lors de la finale de l'Euro 2012 pour l'Espagne ?", a:["7 joueurs","6 joueurs","5 joueurs","8 joueurs"], correct:0 },
-  { q:"Quel académie africaine, fondée par Jean-Marc Guillou en Côte d'Ivoire, a produit des joueurs comme Emmanuel Eboué et Yaya Touré ?", a:["ASEC Mimosas","Fútbol de Hoy","Diambars FC","Right to Dream"], correct:0 },
-  // === DERBYS ET RIVALITÉS ===
-  { q:"Quel est le record d'affluence pour un derby de l'Old Firm (Celtic-Rangers) à Hampden Park ?", a:["118 567 spectateurs","95 000","88 000","105 000"], correct:0 },
-  { q:"Quel est le derby brésilien 'Fla-Flu' et pourquoi porte-t-il ce surnom ?", a:["Flamengo vs Fluminense — contraction des deux noms","Flamengo vs Botafogo — couleurs rouge, noir et blanc","Vasco da Gama vs Fluminense — FLA et Flu abrégés","Santos vs Flamengo — FLA et SA combinés en titre"], correct:0 },
-  // === ÉPOPÉES DES PETITS POUCETS ===
-  { q:"Lors du Mondial 1950, quel but de Joe Gaetjens a permis aux USA de battre l'Angleterre (1-0) dans ce qu'on appelle la 'miracle de Belo Horizonte' ?", a:["Déviation de la tête de Gaetjens sur tir de Bahr, 37e min","Coup franc direct tiré par Gaetjens à la 55e minute","Penalty accordé à la 88e minute après main anglaise","Autogoal du défenseur anglais Ramsey à la 70e minute"], correct:0 },
-  { q:"Quel club de 8e division anglaise a tiré Tottenham au sort en FA Cup 2021, match perdu 5-0 mais historique médiatiquement ?", a:["Marine AFC","Chorley FC","Blyth Spartans","FC United Manchester"], correct:0 },
-  // === SURNOMS ET IDENTITÉS ===
-  { q:"Pourquoi Diego Maradona est-il surnommé 'El Pibe de Oro' (Le Gamin en Or) alors que d'autres joueurs portent ce surnom en Argentine ?", a:["Donné enfant pour ses dribbles extraordinaires à 10 ans","Surnom officiel décerné par la FIFA en 1986","Donné par Pelé lors d'une cérémonie à Buenos Aires","Titre d'un film documentaire sorti en 1992 sur lui"], correct:0 },
-  { q:"Quel est l'origine du surnom 'Cannonball' donné à certains joueurs frappant très fort, et qui a été le premier à le porter au football professionnel ?", a:["John Goodall pour sa frappe de balle","Nat Lofthouse — surnommé Lion of Vienna","Tommy Lawton — connu pour sa puissance","Jack Rowley — tireur exceptionnel"], correct:0 },
+  { q:"Quel joueur a marqué le but vainqueur lors de la finale de la Coupe Intercontinentale 1960 entre le Real Madrid et Peñarol ?", a:["Ferenc Puskás","Alfredo Di Stéfano","Francisco Gento","Héctor Rial"], correct:0 },
+  { q:"Quel est le nombre exact de spectateurs officiellement enregistrés au Maracanã lors de la finale du Mondial 1950 entre Uruguay et Brésil ?", a:["199 854","173 850","210 000","188 000"], correct:0 },
+  { q:"Quel joueur tchécoslovaque a inscrit deux buts en finale de la Coupe du Monde 1934 contre l'Italie, mais a perdu 2-1 ap ?", a:["Antonín Puč","Oldřich Nejedlý","Jiří Sobotka","František Plánička"], correct:0 },
+  { q:"En quelle minute précise Geoff Hurst a-t-il inscrit le but controversé (ligne ou pas ?) lors de la finale 1966 ?", a:["101e minute","98e minute","105e minute","113e minute"], correct:0 },
+  { q:"Quel club a été le premier à utiliser un système de jeu en 4-2-4 de manière systématique, influençant le Brésil champion du monde 1958 ?", a:["Honved Budapest","Flamengo","Santos FC","Partisan Belgrade"], correct:0 },
+  { q:"Quel est le prénom complet exact de Pelé à l'état civil complet (tous prénoms) ?", a:["Edson Arantes do Nascimento","Edison Arantes Pelé do Nascimento","Edson Pelé Arantes Nascimento","Edison Arantes do Nascimento"], correct:0 },
+  { q:"Quel gardien hongrois, surnommé 'le chat noir', a maintenu ses buts inviolés 86 minutes lors de la finale du Mondial 1954 avant de concéder 3 buts contre l'Allemagne ?", a:["Gyula Grosics","Miklós Farkas","János Henni","Lajos Szücs"], correct:0 },
+  { q:"Lors du Mondial 1966, quel joueur nord-coréen a marqué l'unique but éliminant l'Italie en phase de groupes ?", a:["Pak Doo-ik","Han Bong-jin","Im Seung-hwi","Ri Chan-myong"], correct:0 },
+  { q:"Quel joueur détient le record absolu de buts inscrits lors d'un seul match de Ligue des Champions ?", a:["Luiz Adriano","Cristiano Ronaldo","Robert Lewandowski","Lionel Messi"], correct:0 },
+  { q:"Quel joueur yougoslave a terminé meilleur buteur du Mondial 1962 au Chili avec 5 buts ?", a:["Dražan Jerković","Velibor Vasović","Stjepan Bobek","Zlatko Čajkovski"], correct:0 },
+  { q:"Dans quelle ville exacte (pas le pays) le premier match international officiel de l'histoire du football a-t-il été joué en 1872 ?", a:["Glasgow","Londres","Edinburgh","Manchester"], correct:0 },
+  { q:"Quel club argentin a remporté la Copa Libertadores le plus grand nombre de fois ?", a:["Independiente","Boca Juniors","River Plate","San Lorenzo"], correct:0 },
+  { q:"Quel entraîneur a dirigé le Brésil lors de la victoire en Coupe du Monde 1962 au Chili ?", a:["Aymoré Moreira","Vicente Feola","João Saldanha","Zagallo"], correct:0 },
+  { q:"Quel est le score exact du match 'Battle of Santiago' lors du Mondial 1962 entre le Chili et l'Italie, marqué par 2 expulsions et des bagarres ?", a:["Chili 2-0 Italie","Chili 3-0 Italie","Chili 2-1 Italie","Chili 1-0 Italie"], correct:0 },
+  { q:"Quel joueur a été transféré de l'Udinese à la Juventus en 2012 pour seulement 800 000 euros avec une clause de rachat ?", a:["Paul Pogba","Alexis Sánchez","Kwadwo Asamoah","Roberto Pereyra"], correct:0 },
+  { q:"Quel est le nombre exact de clubs fondateurs de la Football League anglaise en 1888 ?", a:["12 clubs","10 clubs","14 clubs","8 clubs"], correct:0 },
+  { q:"Quel joueur a inscrit un but contre son camp lors de la finale de FA Cup 1927, offrant la victoire à Cardiff City contre Arsenal ?", a:["Dan Lewis","Hughie Ferguson","Ernie Curtis","Fred Keenor"], correct:0 },
+  { q:"En quelle année précise la règle interdisant le tacle par derrière a-t-elle été officiellement renforcée par la FIFA avec sanction automatique rouge ?", a:["1998","1994","2002","1990"], correct:0 },
+  { q:"Quel joueur suédois, né à Malmö, a inscrit un but sur coup franc direct dans les dernières secondes contre l'Angleterre lors des qualifications pour l'Euro 1992 et envoyé les Suédois en barrage ?", a:["Thomas Ravelli","Stefan Schwarz","Jonas Thern","Anders Limpar"], correct:3 },
+  { q:"Quel entraîneur a fait jouer le Dinamo Kiev en 4-1-4-1 révolutionnaire dans les années 1970, pionnier du pressing total en URSS ?", a:["Valeriy Lobanovskyi","Viktor Maslov","Oleg Blokhin (joueur)","Mikhail Fomenko"], correct:0 },
+  { q:"Quel est le seul joueur à avoir remporté la Coupe du Monde, l'Euro, la Ligue des Champions et la Copa del Rey la même décennie avec les mêmes couleurs nationales ?", a:["Xavi Hernández","Andrés Iniesta","Sergio Busquets","David Villa"], correct:1 },
+  { q:"Combien de matchs Gianluigi Buffon a-t-il joués avec la Juventus en Serie A lors de sa première période (1995–2018) ?", a:["509 matchs","476 matchs","534 matchs","488 matchs"], correct:0 },
+  { q:"Quel joueur polonais détient le record de buts en une seule saison de Bundesliga avec 41 buts en 2020-21 ?", a:["Robert Lewandowski","Gerd Müller","Pierre-Emerick Aubameyang","Claudio Pizarro"], correct:0 },
+  { q:"Lors de la Coupe du Monde 1982, quel joueur français a été victime du fameux 'coup de Séville' de la part du gardien Harald Schumacher sans que l'arbitre ne siffle ?", a:["Patrick Battiston","Bernard Genghini","Marius Trésor","Alain Giresse"], correct:0 },
+  { q:"Quel est le nom complet du stade national de la Corée du Nord dont la capacité officielle est de 114 000 places ?", a:["Rungrado 1er Mai","Kim Il-sung Stadium","Pyongyang Stadium","Moranbong Stadium"], correct:0 },
+  { q:"En quelle saison précise le FC Barcelone a-t-il réalisé le sextuplé historique sous Pep Guardiola (Liga, Coupe, LDC, Supercoupe d'Espagne, Supercoupe UEFA, Mondial des clubs) ?", a:["2009-10","2008-09","2010-11","2011-12"], correct:0 },
+  { q:"Quel joueur a marqué le but vainqueur de la finale de la Copa Libertadores 1986 entre River Plate et América de Cali ?", a:["Antonio Alzamendi","Nery Pumpido","Jorge Burruchaga","Oscar Ruggeri"], correct:0 },
+  { q:"Quel est le nom exact du stade de Boca Juniors à Buenos Aires, dont le surnom vient de sa forme architecturale ressemblant à un bonbon ?", a:["Estadio Alberto J. Armando","Estadio Juan Domingo Perón","Estadio Monumental","Estadio Néstor Kirchner"], correct:0 },
+  { q:"Quel joueur camerounais a marqué le seul but du Cameroun contre l'Argentine au Mondial 1990, offrant l'une des plus grandes surprises de l'histoire ?", a:["Omam-Biyik","Roger Milla","Cyrille Makanaky","Emmanuel Kunde"], correct:0 },
+  { q:"Quel joueur a inscrit un quadruplé en seulement 9 minutes en Ligue des Champions, record absolu de rapidité ?", a:["Robert Lewandowski","Cristiano Ronaldo","Sadio Mané","Lionel Messi"], correct:0 },
+  { q:"Quel club turc a atteint les demi-finales de la Ligue des Champions 2021-22 de manière surprenante en éliminant l'Atletico Madrid et Manchester City ?", a:["Aucun club turc n'a atteint ce stade en 2021-22","Fenerbahçe","Trabzonspor","Galatasaray"], correct:0 },
+  { q:"Combien de buts Eusébio a-t-il marqués lors du Mondial 1966 en Angleterre, finissant meilleur buteur du tournoi ?", a:["9 buts","7 buts","8 buts","6 buts"], correct:0 },
+  { q:"Quel joueur a disputé des finales de Ligue des Champions avec 3 clubs différents (Ajax, Juventus, Real Madrid) ?", a:["Clarence Seedorf","Edgar Davids","Patrick Kluivert","Frank de Boer"], correct:0 },
+  { q:"Quel est le score de la plus grande victoire de l'histoire des qualifications Coupe du Monde, obtenu par l'Australie en 2001 ?", a:["31-0","22-0","17-0","28-0"], correct:0 },
+  { q:"Quel est le nom du premier joueur africain à avoir marqué en Coupe du Monde en 1934 représentant l'Égypte ?", a:["Abdulrahman Fawzi","Mahmoud Fouad","Hassan El-Fayoumi","Riad Mahmoud"], correct:0 },
+  { q:"Lors de la finale de LDC 1999 entre Manchester United et le Bayern Munich, en combien de minutes United a-t-il marqué ses 2 buts remontants ?", a:["En 2 minutes (90'+1 et 90'+3)","En 5 minutes","En 1 minute","En 3 minutes"], correct:0 },
+  { q:"Quel joueur a porté simultanément les numéros de maillot 7 à Manchester United ET 7 au Real Madrid, devenant symbole de ce numéro dans deux des plus grands clubs mondiaux ?", a:["David Beckham","Cristiano Ronaldo","Eric Cantona","Raúl González"], correct:0 },
+  { q:"En quelle année précise a été fondée la FIFA ?", a:["1904","1900","1908","1896"], correct:0 },
+  { q:"Quel joueur irlandais détient le record de sélections en équipe nationale irlandaise pour un joueur de champ ?", a:["Robbie Keane","Shay Given","John O'Shea","Damien Duff"], correct:0 },
+  { q:"Quel est le score de la plus grande victoire dans un match de Coupe du Monde (phase finale, pas qualifications) ?", a:["Hongrie 10-1 Salvador (1982)","Yougoslavie 9-0 Zaïre (1974)","Allemagne 8-0 Arabie Saoudite (2002)","Brésil 7-1 Allemagne (2014)"], correct:0 },
+  { q:"Quel joueur bolivien est le seul à avoir marqué un but à plus de 3600 mètres d'altitude lors d'une rencontre internationale officielle en 1997 à La Paz ?", a:["Milton Melgar","Marco Sandy","Jaime Moreno","Julio César Baldivieso"], correct:1 },
+  { q:"Quel est le seul pays à avoir remporté la Coupe du Monde en jouant tous ses matchs à l'extérieur de son continent ?", a:["Brésil","Italie","Allemagne","France"], correct:0 },
+  { q:"Quel joueur a été élu homme du match de la finale de LDC 1994 entre AC Milan et FC Barcelone (résultat 4-0) ?", a:["Marcel Desailly","Zvonimir Boban","Dejan Savićević","Daniele Massaro"], correct:2 },
+  { q:"Combien de penalties Antonín Panenka a-t-il marqués avec sa technique en finale de l'Euro 1976 ?", a:["1","2","3","Aucun, il a raté"], correct:0 },
+  { q:"Quel stade mexicain a accueilli la finale de la Coupe du Monde à deux reprises (1970 et 1986), exploit unique dans l'histoire ?", a:["Estadio Azteca","Estadio Jalisco","Estadio Olímpico Universitario","Estadio Universitario Monterrey"], correct:0 },
+  { q:"Quel joueur brésilien a terminé sa carrière avec 1283 buts officiels selon les archives Santos FC, dont 77 sur coup franc direct ?", a:["Pelé","Romário","Zico","Careca"], correct:0 },
+  { q:"Quel arbitre a officié lors de la finale de la Coupe du Monde 1930 en Uruguay ?", a:["John Langenus","Ivan Eklind","Jean Langenus","Francis Bye"], correct:0 },
+  { q:"En quelle année la règle du 'golden goal' a-t-elle été abolie par la FIFA après avoir été utilisée de 1996 à 2003 ?", a:["2004","2002","2003","2006"], correct:0 },
+  { q:"Quel joueur suédois a terminé meilleur buteur de la Coupe du Monde 1958 organisée en Suède ?", a:["Gunnar Gren","Nils Liedholm","Gunnar Nordahl","Lennart Skoglund"], correct:2 },
+  { q:"Quel est le seul club à avoir remporté la Ligue des Champions sans avoir concédé un seul but sur l'ensemble du tournoi ?", a:["Aucun club n'a jamais réalisé cela","AC Milan 1994","Ajax 1995","Real Madrid 1966"], correct:0 },
+  { q:"Combien d'années se sont écoulées entre le premier et le dernier but de Pelé en équipe nationale du Brésil ?", a:["21 ans","18 ans","23 ans","16 ans"], correct:0 },
 ]
 };
 
@@ -736,32 +599,17 @@ function shuffleAnswers(answers, correctIdx) {
   return result;
 }
 
-// Normalize text lengths so no answer is visually "longer" and thus more noticeable
-function normalizeAnswerLengths(answers) {
-  // Find the max length of any answer
-  const maxLen = Math.max(...answers.map(a => a.length));
-  // Only pad if the spread between min and max is large (>30 chars gap)
-  const minLen = Math.min(...answers.map(a => a.length));
-  if (maxLen - minLen < 25) return answers; // fine as-is
-  // For visual balance, we use a trick: add an invisible zero-width joiner to short answers
-  // Actually — just don't. The real fix is CSS equal height + wrapping.
-  return answers;
-}
-
-const DIFF_TIME = { easy: 10, medium: 20, hard: 30 };
-
 function startTimer() {
   clearInterval(timerInterval);
-  const maxTime = DIFF_TIME[currentDifficulty] || 20;
-  timerValue = maxTime;
+  timerValue = 20;
   document.getElementById('timerFill').style.width = '100%';
   document.getElementById('timerFill').style.background = 'var(--green-glow)';
   document.getElementById('timerText').textContent = `⏱ ${timerValue}s`;
   timerInterval = setInterval(() => {
     timerValue--;
-    const pct = (timerValue / maxTime) * 100;
-    document.getElementById('timerFill').style.width = pct + '%';
-    document.getElementById('timerFill').style.background = pct > 50 ? 'var(--green-glow)' : pct > 25 ? 'var(--yellow)' : 'var(--red)';
+    const pct = (timerValue/20)*100;
+    document.getElementById('timerFill').style.width = pct+'%';
+    document.getElementById('timerFill').style.background = timerValue > 10 ? 'var(--green-glow)' : timerValue > 5 ? 'var(--yellow)' : 'var(--red)';
     document.getElementById('timerText').textContent = `⏱ ${timerValue}s`;
     if(timerValue <= 0) { clearInterval(timerInterval); timeOut(); }
   }, 1000);
@@ -782,7 +630,7 @@ function checkAnswer(chosen, correct, btn) {
     const pts = DIFF_PTS[currentDifficulty];
     players[currentPlayerIdx].score += pts;
     btn.classList.add('correct');
-    document.getElementById('feedbackArea').innerHTML = `<span style="color:#39d65a;">✅ Correct ! +${pts} point${pts>1?'s':''} 🎉</span>`;
+    document.getElementById('feedbackArea').innerHTML = `<span style="color:#4d9fff;">✅ Correct ! +${pts} point${pts>1?'s':''} 🎉</span>`;
   } else {
     btn.classList.add('wrong');
     document.getElementById('feedbackArea').innerHTML = `<span style="color:var(--red);">❌ Raté ! Bonne réponse : <strong>${btns[correct].textContent.slice(1)}</strong></span>`;
